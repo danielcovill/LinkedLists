@@ -1,8 +1,6 @@
-export class Node {
-    #contents;
-    #next;
-    constructor(contents, next = null) {
-        this.#next = next;
-        this.#contents = contents;
+module.exports = class Node {
+    constructor(contents) {
+        this.next = null;
+        this.contents = contents;
     }
 }
