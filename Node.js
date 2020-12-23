@@ -1,4 +1,4 @@
-export class Node {
+module.exports = class Node {
     #contents;
     #next;
     constructor(contents, next = null) {
