@@ -6,17 +6,23 @@ describe('LinkedList', () => {
     beforeEach(() => {
         testList = new LinkedList(); 
     });
-    it('should push and peek a string successfully when empty', () => {
+    it('should push and peek a string successfully when starting empty', () => {
         testList.push('1');
         expect(testList.peek()).toBe('1');
         expect(testList.peek()).not.toBe(1);
     });
-    it('should push and peek a number successfully when empty', () => {
+    it('should push and peek a number successfully when starting empty', () => {
         testList.push(1);
         expect(testList.peek()).toBe(1);
         expect(testList.peek()).not.toBe('1');
     });
-    it('should push and pop the appropriate value when empty', () => {
+    it('should throw exception when pop attempted while empty', () => {
+        expect(() => testList.pop()).toThrow('No elements in the LinkedList');
+    });
+    it('should throw exception when peek attempted while empty', () => {
+        expect(() => testList.pop()).toThrow('No elements in the LinkedList');
+    });
+    it('should push and pop the appropriate value when starting empty', () => {
         testList.push(1);
         const temp = testList.pop();
         expect(temp).toBe(1);
@@ -84,5 +90,41 @@ describe('LinkedList', () => {
         let result = testList.removeElement('b');
         expect(result).toBe('b');
         expect(testList.toString()).toBe('b, b, a');
+    });
+    it('should return the proper size when empty', () => {
+        expect(testList.length).toBe(0);
+    });
+    it('should return the proper size when multiple elements are pushed', () => {
+        let input = ['a', 'b', 'b', 'b'];
+        input.forEach(element => {
+            testList.push(element);
+        });
+        expect(testList.length).toBe(4);
+    });
+    it('should return the proper size when multiple elements are inserted and pushed', () => {
+        let input = ['a', 'b', 'b', 'b'];
+        input.forEach(element => {
+            testList.push(element);
+        });
+        testList.insertAt('blah', 3);
+        testList.insertAt('zip', 2);
+        testList.insertAt('zoom', 3);
+        expect(testList.length).toBe(7);
+    });
+    it('should return the proper size when elements are removed by index', () => {
+        let input = ['a', 'b', 'b', 'b', 'c', 4, 3, 8];
+        input.forEach(element => {
+            testList.push(element);
+        });
+        testList.removeFrom(5);
+        expect(testList.length).toBe(7);
+    });
+    it('should return the proper size when elements are removed by value', () => {
+        let input = ['a', 'b', 'b', 'b', 'c', 4, 3, 8];
+        input.forEach(element => {
+            testList.push(element);
+        });
+        testList.removeElement('c');
+        expect(testList.length).toBe(7);
     });
 });
