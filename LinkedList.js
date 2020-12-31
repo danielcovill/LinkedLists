@@ -102,21 +102,15 @@ class LinkedList {
     }
 
     toString() {
-        if(this.#head === null) {
-            return ''; 
-        }
-
         let result = '';
         let currentNode = this.#head;
-        do {
+        while(!!currentNode) {
             result = result.concat(currentNode.contents.toString());
             if(currentNode.next !== null) {
                 result = result.concat(', ');
             }
             currentNode = currentNode.next;
         } 
-        while(currentNode !== null);
-
         return result;
     }
 
