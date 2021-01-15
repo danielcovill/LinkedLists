@@ -61,6 +61,7 @@ class LinkedList {
     // Removes the element at the point in the linked list defined by the zero 
     // indexed location parameter
     removeFrom(location) {
+        // TODO: Validation on location parameter
         if(location === 0 && this.#length > 0)
         {
             return this.pop();
